@@ -1,80 +1,81 @@
-<p align="center">
-  <a href="#" target="_blank">
-    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="320" alt="Laravel Logo">
-  </a>
-</p>
+# 🎓 SmartEdu – AI-Powered E-Learning Platform & Learning Performance Analytics
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Laravel-12.0-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12" />
-  <img src="https://img.shields.io/badge/Inertia.js-v2.0-9553E9?style=for-the-badge&logo=inertia&logoColor=white" alt="Inertia v2" />
-  <img src="https://img.shields.io/badge/React-18.2-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18" />
-  <img src="https://img.shields.io/badge/Tailwind_CSS-v3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
-  <img src="https://img.shields.io/badge/Vite-7.0-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 7" />
-</p>
+**SmartEdu** is a modern AI-powered e-learning platform designed to streamline teaching and learning activities while providing personalized academic guidance. By leveraging students' quiz history and learning performance data, SmartEdu evaluates individual subject mastery levels and dynamically generates personalized learning recommendations through an integrated AI assistant.
+
+The platform is built using a modern web architecture powered by **Laravel 12 (Backend)**, **Inertia.js v2 (Frontend-Backend Bridge)**, and **React 18 (Frontend)**. The user interface is enhanced with **Shadcn UI**, **Tailwind CSS**, and interactive micro-animations powered by **Framer Motion**.
 
 ---
 
-# 📑 SmartEdu - Platform E-Learning Berbasis AI & Analisis Kinerja
+## 🚀 Key Features
 
-**SmartEdu** adalah platform *e-learning* modern berbasis kecerdasan buatan (AI) yang dirancang untuk merampingkan alur belajar-mengajar dan mempersonalisasikan bimbingan akademik. Menggunakan integrasi data riwayat kuis siswa secara *real-time*, SmartEdu memetakan tingkat pemahaman materi (*Mastery Level*) masing-masing siswa dan secara dinamis menyajikan saran serta analisis personal yang dipandu oleh asisten AI.
+### 🛡️ 1. Multi-Role Authentication & Authorization (Teacher & Student)
 
-Platform ini dibangun dengan arsitektur modern berkinerja tinggi menggunakan **Laravel 12 (Backend)**, **Inertia.js v2 (Bridge)**, dan **React 18 (Frontend)**, serta dipercantik dengan polesan UI elegan dari **Shadcn UI**, **Tailwind CSS**, dan micro-animation interaktif dari **Framer Motion**.
+The system implements role-based access control through dedicated middleware (`role:teacher` and `role:student`) across authentication and application workflows.
+
+- **Default Registration:** New users registering through the public registration page are automatically assigned the **Student** role.
+- **Protected Access:** Application routes are restricted based on user roles to ensure proper authorization and protect classroom and academic data.
+
+### 👨‍🏫 2. Teacher Portal (Teacher Workspace)
+
+A centralized workspace that enables teachers to manage learning materials, organize classrooms, and evaluate student performance.
+
+- **Teacher Dashboard:** Provides an overview of teaching statistics, including the number of classrooms, subjects, and active quizzes.
+- **Classroom Management:** Create classrooms, enroll students, and monitor classroom membership and participation.
+- **Subject & Learning Material Management:**
+  - Create and manage academic subjects (**Subjects**).
+  - Organize learning content into specific discussion topics (**Topics**).
+  - Publish reading materials and educational resources (**Materials**).
+- **Quiz Management:** Create comprehensive multiple-choice quizzes with question banks (**Questions**) and answer choices (**Question Options**).
+
+### 👨‍🎓 3. Student Portal (Student Learning Center)
+
+A self-paced learning environment that helps students improve their understanding through structured learning activities and performance evaluation.
+
+- **Student Dashboard:** Displays enrolled classrooms, assigned quizzes, and visual learning progress summaries.
+- **Interactive Learning:** Access and study educational materials dynamically based on topics provided by teachers.
+- **Real-Time Quiz Submission:** Complete interactive quizzes with automatically recorded student responses (`StudentAnswer`) and score validation.
+- **Learning Performance & Mastery Level:**
+
+  The system dynamically calculates students' learning accuracy based on accumulated quiz results and categorizes their understanding into three mastery levels:
+
+  - 🔴 **Weak:** Indicates insufficient understanding of the learning material.
+  - 🟡 **Medium:** Indicates a moderate level of understanding.
+  - 🟢 **Strong:** Indicates a strong understanding of the learning material.
+
+- **AI Chatbot & Personalized AI Insights:**
+
+  Students can interact with a personalized AI assistant. By analyzing historical learning performance data stored in `material_performances`, the AI generates:
+
+  - **Performance Analysis (`analysis_text`):** An evaluation of the student's learning progress and areas requiring improvement.
+  - **Learning Recommendations (`recommendation_text`):** Actionable suggestions and learning strategies to improve academic performance.
+
+  Generated insights are stored in the `ai_insights` table for future reference.
 
 ---
 
-## 🚀 Fitur Utama
+## 🛠️ Technology Stack & Ecosystem
 
-### 🛡️ 1. Otorisasi Multi-Role (Teacher & Student)
-Sistem memiliki pengenalan peran otomatis berbasis middleware (`role:teacher` dan `role:student`) pada alur registrasi dan login:
-- **Pendaftaran Default**: Pengguna baru yang mendaftar melalui halaman registrasi publik secara bawaan akan memiliki peran **Siswa (Student)**.
-- **Akses Terproteksi**: Pembatasan ketat rute berdasarkan middleware peran masing-masing demi keamanan data akademik kelas.
+SmartEdu combines modern technologies to deliver a maintainable backend, responsive user interface, and interactive learning experience.
 
-### 👨‍🏫 2. Portal Guru (Teacher Workspace)
-Ruang kerja terpadu bagi pendidik untuk mengelola kurikulum dan mengevaluasi capaian belajar siswa:
-- **Dashboard Guru**: Tinjauan cepat statistik pengajaran, jumlah kelas, subjek, dan perkembangan kuis aktif.
-- **Manajemen Kelas (Classrooms)**: Membuat kelas baru, mendaftarkan siswa, serta melacak daftar anggota kelas yang berpartisipasi.
-- **Manajemen Subjek & Materi**:
-  - Menyusun mata pelajaran utama (**Subjects**).
-  - Membuat topik pembahasan spesifik (**Topics**) di dalam subjek tersebut.
-  - Mempublikasikan materi bacaan dan materi ajar (**Materials**).
-- **Desain Evaluasi Kuis (Quizzes)**: Merancang kuis pilihan ganda yang komprehensif lengkap dengan manajemen bank soal (**Questions**) dan opsi jawaban (**Question Options**).
-
-### 👨‍🎓 3. Portal Siswa (Student Learning Center)
-Pusat pembelajaran mandiri yang cerdas untuk mengasah pemahaman siswa secara terarah:
-- **Dashboard Siswa**: Panel utama yang menyajikan ringkasan kelas yang diikuti, daftar tugas/kuis, serta grafik kemajuan belajar.
-- **Pembelajaran Interaktif**: Membaca materi ajar secara dinamis sesuai topik yang ditugaskan oleh guru.
-- **Pengerjaan Kuis Real-Time**: Mengerjakan kuis interaktif yang secara otomatis menyimpan jawaban siswa (`StudentAnswer`) dan memvalidasi skor.
-- **Evaluasi Kinerja & Mastery Level**:
-  Sistem secara dinamis menghitung persentase akurasi belajar siswa berdasarkan akumulasi kuis dan mengategorikan tingkat pemahaman menjadi 3 level:
-  - 🔴 **Weak (Lemah)**
-  - 🟡 **Medium (Sedang)**
-  - 🟢 **Strong (Kuat)**
-- **Chatbot AI & AI Insights**:
-  Siswa memiliki akses ke asisten AI personal. Berdasarkan riwayat data evaluasi performa belajar (`material_performances`), kecerdasan buatan menyusun analisis mendalam (`analysis_text`) serta langkah strategis rekomendasi peningkatan belajar (`recommendation_text`) yang disimpan rapi di tabel `ai_insights`.
-
----
-
-## 🛠️ Stack Teknologi & Ekosistem
-
-SmartEdu dikembangkan dengan kombinasi teknologi terbaik untuk memastikan kecepatan, keamanan, dan keindahan antarmuka:
-
-| Kategori | Teknologi | Deskripsi |
+| Category | Technology | Description |
 | :--- | :--- | :--- |
-| **Inti Backend** | **PHP v8.3 / v8.2** | Runtime bahasa utama untuk efisiensi logika server. |
-| **Framework Utama** | **Laravel v12.0** | Versi terbaru dengan struktur ramping, database migration canggih, dan ORM cepat. |
-| **Bridging SPA** | **Inertia.js v2.0** | Adapter frontend-backend instan untuk pengalaman Single Page Application tanpa REST API manual. |
-| **Perpustakaan UI** | **React v18.2** | Library JavaScript deklaratif untuk reaktivitas komponen yang andal. |
-| **Build Tool** | **Vite v7.0** | Tool bundling super cepat untuk kompilasi modul JS/CSS instan di masa pengembangan. |
-| **Engine Styling** | **Tailwind CSS v3** | Framework CSS utility-first untuk kustomisasi antarmuka premium dan responsif. |
-| **Desain Antarmuka** | **Shadcn UI / Radix** | Fondasi komponen UI solid yang aksesibel dan memiliki visual konsisten. |
-| **Animasi Mikro** | **Framer Motion v12** | Engine animasi premium untuk menghasilkan transisi halaman dan interaksi tombol yang hidup. |
-| **Notifikasi** | **Sonner** | Library toaster premium dengan feedback responsif nan estetis. |
+| **Backend Language** | PHP 8.3 / 8.2 | Primary programming language for server-side application logic. |
+| **Backend Framework** | Laravel 12 | PHP framework for application architecture, database migrations, and ORM operations. |
+| **SPA Integration** | Inertia.js v2 | Connects Laravel and React to deliver SPA-like navigation without requiring a manually maintained REST API. |
+| **Frontend Library** | React 18.2 | Component-based JavaScript library for building interactive user interfaces. |
+| **Build Tool** | Vite 7 | Modern frontend build tool for fast development and asset compilation. |
+| **CSS Framework** | Tailwind CSS v3 | Utility-first CSS framework for building responsive and customizable interfaces. |
+| **UI Components** | Shadcn UI / Radix UI | Accessible and reusable UI components with consistent design patterns. |
+| **Animation Library** | Framer Motion v12 | Animation library for interactive transitions and micro-interactions. |
+| **Notifications** | Sonner | Toast notification library for providing user feedback. |
 
 ---
 
-## 📊 Arsitektur Database & Relasi Model (Eloquent)
+## 📊 Database Architecture & Eloquent Model Relationships
 
-Struktur tabel SmartEdu dirancang secara ternormalisasi dengan integritas referensial yang kuat guna mengelola siklus belajar dari kurikulum hingga evaluasi AI:
+SmartEdu uses a relational database structure designed to maintain data consistency and referential integrity across the learning management and AI evaluation workflows.
+
+### Entity Relationship Diagram (ERD)
 
 ```mermaid
 erDiagram
@@ -93,153 +94,198 @@ erDiagram
     User ||--o{ StudentAnswer : "submits (Student)"
 ```
 
-### Penjelasan Utama Model:
-*   **User**: Menampung kredensial login dengan kolom `role` bernilai `teacher` atau `student`.
-*   **Classroom & ClassroomMember**: Menghubungkan Guru selaku pembuat kelas, dan Siswa selaku peserta didik melalui tabel pivot *classroom_members* dengan atribut waktu `joined_at`.
-*   **Subject, Topic, & Material**: Struktur kurikulum 3 tingkat (Mata Pelajaran ➔ Topik Bahasan ➔ Konten/Materi Belajar).
-*   **Quize, Question, & QuestionOption**: Struktur kuis terintegrasi di mana satu Materi Belajar dapat diasosiasikan dengan instansi kuis berisikan bank soal pilihan ganda.
-*   **StudentAnswer**: Merekam opsi jawaban yang dipilih siswa untuk setiap butir soal guna dihitung ketepatannya secara otomatis.
-*   **MaterialPerformance**: Menyimpan data kumulatif hasil pengerjaan kuis siswa (jumlah pertanyaan, jumlah jawaban benar, persentase akurasi, dan status `mastery_level`).
-*   **AiInsight**: Menyimpan rangkuman evaluasi kognitif (`analysis_text`) serta saran pembelajaran taktis (`recommendation_text`) berbasis AI yang terhubung secara 1-to-1 dengan performa materi siswa.
+### Key Model Descriptions
+
+- **User:** Stores user authentication credentials and role information. The `role` column determines whether a user is a `teacher` or `student`.
+- **Classroom & ClassroomMember:** Connects teachers who manage classrooms with students who enroll in them. The `classroom_members` pivot table stores membership information, including the `joined_at` timestamp.
+- **Subject, Topic & Material:** Represents the three-level learning content hierarchy: Subject → Topic → Learning Material.
+- **Quiz, Question & QuestionOption:** Manages the assessment structure, where each quiz contains multiple questions, and each question can have multiple answer options.
+- **StudentAnswer:** Records students' selected answers for individual quiz questions, enabling automated answer validation and score calculation.
+- **MaterialPerformance:** Stores aggregated student performance data, including the total number of questions, correct answers, accuracy percentage, and `mastery_level`.
+- **AiInsight:** Stores AI-generated learning evaluations (`analysis_text`) and actionable learning recommendations (`recommendation_text`). Each insight is associated with a specific student material performance record through a one-to-one relationship.
 
 ---
 
-## 📂 Struktur Folder Proyek
+## 📂 Project Structure
+
+The following structure highlights the main directories and components of the SmartEdu application.
 
 ```bash
 smartEdu/
 ├── app/
 │   ├── Http/
 │   │   ├── Controllers/
-│   │   │   ├── Auth/              # Logika masuk, daftar, & reset sandi (Laravel Breeze)
-│   │   │   ├── Guru/              # Kontroler operasional untuk Guru (Dashboard, Kelas, Materi, Kuis)
-│   │   │   └── Siswa/             # Kontroler pembelajaran untuk Siswa (Dashboard, Materi, Jawaban, AI)
-│   │   └── Middleware/            # Validasi otorisasi peran (Role Verification)
-│   └── Models/                    # Hubungan relasional Eloquent (User, Subject, Material, dll.)
-├── bootstrap/                     # Pendaftaran middleware & routing terpadu (app.php)
-├── config/                        # Berkas konfigurasi inti Laravel (App, Database, Session)
+│   │   │   ├── Auth/              # Authentication and password management
+│   │   │   ├── Guru/              # Teacher operations (Dashboard, Classrooms, Materials, Quizzes)
+│   │   │   └── Siswa/             # Student operations (Dashboard, Learning, Answers, AI)
+│   │   └── Middleware/            # Role-based access control
+│   └── Models/                    # Eloquent models and relationships
+├── bootstrap/                     # Application bootstrap and middleware registration
+├── config/                        # Application configuration files
 ├── database/
-│   ├── migrations/                # Schema DDL tabel SmartEdu
-│   └── seeders/                   # Seeder inisialisasi awal (Pengguna Dummy & Subjek)
+│   ├── migrations/                # Database schema definitions
+│   └── seeders/                   # Initial dummy users and subject data
 ├── resources/
 │   ├── css/
-│   │   └── app.css                # Konfigurasi CSS Tailwind global
+│   │   └── app.css                # Global Tailwind CSS configuration
 │   └── js/
-│       ├── Components/            # Koleksi elemen antarmuka reusable (Shadcn, dsb.)
-│       ├── constats/              # Catatan: Direktori navigasi sidebar (konvensi proyek 'constats')
-│       ├── hooks/                 # Custom React Hooks
-│       ├── layout/                # Template bingkai aplikasi (DashboardLayout & Sidebar)
-│       └── Pages/                 # Komponen halaman utama (Auth, Siswa, Guru, Welcome)
+│       ├── Components/            # Reusable UI components (Shadcn UI, etc.)
+│       ├── constats/              # Sidebar navigation configuration
+│       ├── hooks/                 # Custom React hooks
+│       ├── layout/                # Application layouts (DashboardLayout, Sidebar)
+│       └── Pages/                 # Main application pages (Auth, Student, Teacher, Welcome)
 ├── routes/
-│   ├── auth.php                   # Rute keamanan autentikasi
-│   └── web.php                    # Gerbang rute utama berbasis grup middleware
-└── package.json                   # Daftar dependensi JS & instruksi kompilasi Vite
+│   ├── auth.php                   # Authentication routes
+│   └── web.php                    # Main application routes and middleware groups
+└── package.json                   # Frontend dependencies and Vite scripts
 ```
 
 ---
 
-## ⚙️ Panduan Instalasi Lokal & Pengembangan
+## ⚙️ Local Installation & Development Guide
 
-Ikuti langkah-langkah sistematis di bawah ini untuk memasang dan menjalankan proyek di server lokal Anda:
+Follow these steps to configure and run SmartEdu in your local development environment.
 
-### 📋 Prasyarat Sistem
-Pastikan komputer Anda telah terinstal:
-*   PHP >= 8.2 atau 8.3
-*   Composer
-*   Node.js (versi LTS direkomendasikan) & NPM
+### 📋 System Requirements
 
-### 1. Kloning Repositori
+Make sure the following tools are installed on your machine:
+
+- PHP >= 8.2 (PHP 8.3 recommended)
+- Composer
+- Node.js (LTS version recommended)
+- NPM
+
+### 1. Clone the Repository
+
 ```bash
 git clone <repository-url>
 cd smartEdu
 ```
 
-### 2. Pasang Dependensi Backend & Frontend
+### 2. Install Backend & Frontend Dependencies
+
+Install the required PHP and JavaScript dependencies.
+
 ```bash
-# Memasang dependensi PHP
+# Install PHP dependencies
 composer install
 
-# Memasang dependensi Javascript & Tailwind
+# Install JavaScript and frontend dependencies
 npm install
 ```
 
-### 3. Konfigurasi Environment File
-Salin konfigurasi default `.env.example` ke `.env` dan jalankan pembuat kunci keamanan Laravel:
+### 3. Configure Environment Variables
+
+Copy the example environment file and generate a new Laravel application key.
+
 ```bash
+# Windows
 copy .env.example .env
+
+# Generate application key
 php artisan key:generate
 ```
-*Sesuaikan koneksi database di file `.env` Anda (Proyek ini secara bawaan siap menggunakan database **SQLite** atau dapat Anda ubah ke **MySQL** sesuai kebutuhan).*
 
-### 4. Migrasi Skema & Seeding Data Utama
-Inisialisasi tabel database dan masukkan data dummy awal dengan satu perintah:
+Configure your database connection in the `.env` file.
+
+By default, the project can be configured to use **SQLite** or **MySQL**, depending on your development environment.
+
+### 4. Run Database Migrations & Seeders
+
+Initialize the database schema and populate the database with initial dummy data.
+
 ```bash
 php artisan migrate --seed
 ```
-Proses *seeding* akan secara otomatis mendaftarkan **2 Akun Dummy** untuk pengujian aplikasi:
 
-| Peran | Alamat Email | Kata Sandi |
+The seeder automatically creates two dummy accounts for application testing:
+
+| Role | Email Address | Password |
 | :--- | :--- | :--- |
-| **👨‍🏫 Guru (Teacher)** | `guru@gmail.com` | `password` |
-| **👨‍🎓 Siswa (Student)** | `siswa@gmail.com` | `password` |
+| **👨‍🏫 Teacher** | `guru@gmail.com` | `password` |
+| **👨‍🎓 Student** | `siswa@gmail.com` | `password` |
 
-### 5. Menjalankan Server Pengembangan (Dev Server)
-SmartEdu dilengkapi skrip kustom terintegrasi menggunakan `concurrently`. Anda cukup menjalankan satu perintah berikut untuk menghidupkan Laravel server, Vite compiler, queue worker, dan log stream secara simultan:
+### 5. Start the Development Server
+
+SmartEdu includes an integrated development script using `concurrently`. You can start the Laravel server, Vite development server, queue worker, and log stream simultaneously with a single command.
+
 ```bash
 composer run dev
 ```
 
-Atau jika Anda ingin menjalankan layanannya satu per satu secara manual pada terminal terpisah:
+Alternatively, you can start each service manually in separate terminal windows.
+
 ```bash
-# Terminal 1: Menjalankan Server Laravel
+# Terminal 1: Start Laravel development server
 php artisan serve
 
-# Terminal 2: Menjalankan Server Aset Vite
+# Terminal 2: Start Vite development server
 npm run dev
 
-# Terminal 3: Menjalankan Listener Antrean (Penting untuk pemrosesan AI secara asinkron)
+# Terminal 3: Start the queue listener
 php artisan queue:listen
 ```
 
-Setelah server aktif, buka peramban dan kunjungi **[http://127.0.0.1:8000](http://127.0.0.1:8000)**.
+The queue listener is important for processing asynchronous jobs, including AI-related tasks.
+
+Once the development server is running, open your browser and navigate to:
+
+**http://127.0.0.1:8000**
 
 ---
 
-## 🧪 Pengujian Unit & Fitur (Testing Suite)
+## 🧪 Unit & Feature Testing
 
-Menjamin keandalan alur otorisasi dan logika kuis menggunakan **PHPUnit**:
+SmartEdu uses **PHPUnit** to verify application functionality, authentication workflows, role-based authorization, and quiz-related business logic.
 
-*   **Menjalankan Seluruh Pengujian**:
-    ```bash
-    php artisan test --compact
-    ```
-*   **Menjalankan Pengujian di Berkas Tertentu**:
-    ```bash
-    php artisan test --compact tests/Feature/ExampleTest.php
-    ```
+**Run the complete test suite:**
 
----
+```bash
+php artisan test --compact
+```
 
-## 🎨 Standarisasi Penulisan Kode (Code Formatting)
+**Run tests from a specific file:**
 
-Guna menyamakan standar penulisan kode kolaboratif, jalankan alat pemformatan ini sebelum mengunggah pekerjaan Anda ke repositori:
-
-*   **Format Kode PHP Backend (Laravel Pint)**:
-    ```bash
-    vendor/bin/pint
-    ```
-*   **Format Kode JS/React Frontend (Prettier)**:
-    ```bash
-    npm run format
-    ```
+```bash
+php artisan test --compact tests/Feature/ExampleTest.php
+```
 
 ---
 
-> [!TIP]
-> **Catatan Arsitektur**:
-> *   Direktori navigasi diletakkan di dalam folder `resources/js/constats` (menggunakan nama *constats* sesuai konvensi awal repositori). Pastikan deklarasi *import* Anda merujuk ke `@/constats/navigation`.
-> *   Selalu manfaatkan helper `@inertiajs/react` seperti `<Link>` atau `router.visit()` untuk melakukan navigasi halaman agar siklus Single Page Application (SPA) tidak terputus.
+## 🎨 Code Formatting & Standards
 
-> [!IMPORTANT]
-> **Optimasi Inertia v2**:
-> Demi menyajikan antarmuka premium berkinerja tinggi, manfaatkan fitur **Deferred Props** dan **WhenVisible** pada halaman materi yang memiliki teks panjang. Tampilkan komponen *pulsing skeleton* yang indah sebagai *fallback* pemuatan data asinkron agar memberikan impresi visual premium bagi pengguna.
+To maintain consistent code quality and formatting across the project, run the following tools before committing your changes.
+
+**PHP Backend Formatting (Laravel Pint):**
+
+```bash
+vendor/bin/pint
+```
+
+**JavaScript / React Frontend Formatting (Prettier):**
+
+```bash
+npm run format
+```
+
+---
+
+## 💡 Development Notes
+
+> **Architecture & Navigation**
+>
+> - The sidebar navigation configuration is located in `resources/js/constats`. The directory intentionally retains the original project naming convention.
+> - Make sure imports reference the correct path, for example: `@/constats/navigation`.
+> - Use Inertia.js navigation helpers such as `<Link>` and `router.visit()` from `@inertiajs/react` to maintain SPA-like navigation without triggering unnecessary full-page reloads.
+
+> **Inertia.js v2 Performance Optimization**
+>
+> - Leverage **Deferred Props** to load non-critical page data asynchronously.
+> - Use **WhenVisible** to fetch data when specific page sections enter the viewport.
+> - Implement animated skeleton loading components as fallback UI while asynchronous data is being retrieved.
+>
+> These techniques help improve perceived loading performance and create a smoother user experience, particularly on pages containing extensive learning materials.
+
+---
+
+**SmartEdu** – Making learning more personalized through AI-powered insights and performance analytics.
